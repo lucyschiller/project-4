@@ -1,0 +1,43 @@
+//jshint esversion: 6
+
+let controller = function() {
+
+  if (localStorage.getItem("toDoList")) {
+    $(".comments").html(localStorage.getItem("toDoList"));
+  }
+
+  let addCommentFromInputBox = function() {
+    let $new_comment;
+
+    if ($(".comment-input input").val() !== "") {
+      $new_comment = $("<p>").text($(".comment-input input").val());
+      //$new_comment.hide();
+      $(".comments").append($new_comment);
+      //$new_comment.fadeIn();
+      $(".comment-input input").val("");
+
+      // log the list of paragraph elements
+      localStorage.setItem("toDoList", $(".comments").html());
+      //console.log($(".comments").html());
+  }
+};
+
+let deleteHandler = () => {
+  //console.log(deleteHandler);
+  localStorage.removeitem(".comments");
+};
+
+  $(".comment-input button").on("click", function(event) {
+    addCommentFromInputBox();
+  });
+
+  $(".comment-input input").on("keypress", function(event) {
+    if (event.keyCode === 13) {
+      addCommentFromInputBox();
+    }
+  });
+
+  $(".delete button").on("click", deleteHandler());
+};
+
+$(document).ready(controller);
