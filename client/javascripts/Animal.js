@@ -1,12 +1,5 @@
 // jshint esversion: 6
 
-
-//Class Types: Basic syntax
-//https://javascript.info/class
-
-//Class Types: Inheritance
-//https://javascript.info/class-inheritance
-
 class Animal {
   constructor(name) {
     this.speed = 0;
@@ -47,9 +40,23 @@ class Rabbit extends Animal {
 
 // Inherit from Animal
 class Dog extends Animal {
-  //your code goes here..
+  constructor(name, breed, weight, sound) {
+    super(name);
+    this.breed = breed;
+    this.weight = weight;
+  }
 
+  bark() {
+    this.sound = sound;
+    return `${this.sound} ${this.sound}!`;
+  }
+
+  stop() {
+    super.stop();
+    this.bark();
+  }
 }
+
 
 let test_driver = () => {
 
@@ -60,7 +67,7 @@ let test_driver = () => {
     rabbit.stop();
     console.log(rabbit.name);
     console.log(rabbit.earLength);
-  }
+  };
 
   let test_dog = () => {
     let fang = new Dog("Fang", "Airedale", 50, "Woof");
@@ -68,15 +75,14 @@ let test_driver = () => {
     console.log(`${fang.name} is a ${fang.breed} dog weighing ${fang.weight} lbs. that can run ${fang.speed} mph.`);
     console.log(`Look, a cat! ${fang.name} barks: ${fang.bark()}`);
     fang.stop();
-    const  zero = new Dog("Zero", "Beagle", 22, "Yip" );
+    const zero = new Dog("Zero", "Beagle", 22, "Yip" );
     zero.run(10);
     console.log(`${zero.name} is a ${zero.breed} dog weighing ${zero.weight} lbs. that can run ${zero.speed} mph.`);
     console.log(`Look, a cat! ${zero.name} barks: ${zero.bark()}`);
     zero.stop();
 
-  }
+  };
 
-  //run tests
   test_rabbit();
   test_dog();
-}
+};
